@@ -14,22 +14,26 @@ import 'package:flutter/material.dart';
 
 class PageBackgroundWidget extends StatelessWidget {
   final List<Widget> children;
+  final Color backgroundColor;
+  final String background;
 
   const PageBackgroundWidget({
     required this.children,
+    required this.backgroundColor,
+    required this.background,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xff2a2a2a),
+      color: backgroundColor,
       child: Stack(
         children: <Widget>[
           Align(
             alignment: Alignment.bottomCenter,
             child: Image.asset(
-              'assets/earth.webp',
+              background,
               width: double.infinity,
               //height: double.infinity,
               fit: BoxFit.fitWidth,
