@@ -16,9 +16,11 @@ import 'package:ge_package/presentation/reset_email_dialog.dart';
 import 'package:ge_package/widgets/page_background_widget.dart';
 
 class VerifyPage extends StatefulWidget {
+  final Widget banner;
   final User user;
 
   const VerifyPage({
+    required this.banner,
     required this.user,
     super.key,
   });
@@ -53,39 +55,7 @@ class _VerifyPageState extends State<VerifyPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  const Flex(
-                    direction: Axis.vertical,
-                    children: <Widget>[
-                      Text(
-                        'DEVELOPER API CONSOLE',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          letterSpacing: 4.0,
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      Text(
-                        'GREENER ENERGY',
-                        style: TextStyle(
-                          fontFamily: 'BebasNeue',
-                          fontWeight: FontWeight.w900,
-                          fontSize: 30,
-                          letterSpacing: 1.8,
-                          color: Color(0xff4a6741),
-                        ),
-                      ),
-                      Text(
-                        'FLOW MODEL',
-                        style: TextStyle(
-                          fontFamily: 'BebasNeue',
-                          fontWeight: FontWeight.w900,
-                          fontSize: 20,
-                          color: Color(0xff4a6741),
-                          letterSpacing: 1.8,
-                        ),
-                      ),
-                    ],
-                  ),
+                  widget.banner,
                   const SizedBox(height: 20),
                   const Text(
                     "Verify your email",

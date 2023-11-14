@@ -17,16 +17,12 @@ import '../widgets/page_background_widget.dart';
 import 'password_reset_dialog.dart';
 
 class LoginPage extends StatefulWidget {
-  final String usage;
-  final String title;
-  final String subTitle;
+  final Widget banner;
   final Color backgroundColor;
   final String background;
 
   const LoginPage({
-    required this.usage,
-    required this.title,
-    required this.subTitle,
+    required this.banner,
     required this.backgroundColor,
     required this.background,
     super.key,
@@ -84,47 +80,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Flex(
-                          direction: Axis.vertical,
-                          children: <Widget>[
-                            widget.usage.isNotEmpty
-                                ? Text(
-                                    widget.usage,
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      letterSpacing: 4.0,
-                                    ),
-                                  )
-                                : const SizedBox(width: 1),
-                            widget.title.isNotEmpty
-                                ? Padding(
-                                    padding: const EdgeInsets.only(top: 10),
-                                    child: Text(
-                                      widget.title,
-                                      style: const TextStyle(
-                                        fontFamily: 'BebasNeue',
-                                        fontWeight: FontWeight.w900,
-                                        fontSize: 30,
-                                        letterSpacing: 1.8,
-                                        color: Color(0xff4a6741),
-                                      ),
-                                    ),
-                                  )
-                                : const SizedBox(width: 1),
-                            widget.subTitle.isNotEmpty
-                                ? Text(
-                                    widget.subTitle,
-                                    style: const TextStyle(
-                                      fontFamily: 'BebasNeue',
-                                      fontWeight: FontWeight.w900,
-                                      fontSize: 20,
-                                      color: Color(0xff4a6741),
-                                      letterSpacing: 1.8,
-                                    ),
-                                  )
-                                : const SizedBox(width: 1),
-                          ],
-                        ),
+                        widget.banner,
                         const SizedBox(height: 10),
                         TextFormField(
                           validator: (email) => EmailValidator.validate(email!) ? null : 'Valid user email required',
