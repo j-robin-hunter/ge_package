@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import '../data/application_auth.dart';
 import '../widgets/page_background_widget.dart';
 import 'password_reset_dialog.dart';
+import 'package:gap/gap.dart';
 
 class LoginPage extends StatefulWidget {
   final Widget banner;
@@ -81,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         widget.banner,
-                        const SizedBox(height: 10),
+                        const Gap(10),
                         TextFormField(
                           validator: (email) => EmailValidator.validate(email!) ? null : 'Valid user email required',
                           controller: emailController,
@@ -89,9 +90,9 @@ class _LoginPageState extends State<LoginPage> {
                           decoration: const InputDecoration(
                             labelText: 'User*',
                             border: OutlineInputBorder(),
+                            helperText: ' ',
                           ),
                         ),
-                        const SizedBox(height: 10),
                         TextFormField(
                           validator: (value) {
                             if (value!.length < 8) return 'Minimum 8 characters';
@@ -109,6 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                           textInputAction: TextInputAction.done,
                           decoration: InputDecoration(
                             labelText: 'Password*',
+                            helperText: ' ',
                             suffixIcon: IconButton(
                               icon: isObscured ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off),
                               onPressed: () => setState(() => isObscured = !isObscured),
@@ -117,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           obscureText: isObscured,
                         ),
-                        const SizedBox(height: 20),
+                        const Gap(20),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             minimumSize: const Size.fromHeight(50),
@@ -139,7 +141,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                         errorMessage == null
-                            ? const SizedBox(height: 15)
+                            ? const Gap(15)
                             : Padding(
                                 padding: const EdgeInsets.only(top: 10),
                                 child: Text(
