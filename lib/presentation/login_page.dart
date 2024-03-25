@@ -89,7 +89,6 @@ class _LoginPageState extends State<LoginPage> {
                           textInputAction: TextInputAction.next,
                           decoration: const InputDecoration(
                             labelText: 'User*',
-                            border: OutlineInputBorder(),
                             helperText: ' ',
                           ),
                         ),
@@ -115,11 +114,10 @@ class _LoginPageState extends State<LoginPage> {
                               icon: isObscured ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off),
                               onPressed: () => setState(() => isObscured = !isObscured),
                             ),
-                            border: const OutlineInputBorder(),
                           ),
                           obscureText: isObscured,
                         ),
-                        const Gap(20),
+                        const Gap(5),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             minimumSize: const Size.fromHeight(50),
