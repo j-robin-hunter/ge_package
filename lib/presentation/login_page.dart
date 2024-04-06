@@ -19,11 +19,13 @@ import 'package:gap/gap.dart';
 
 class LoginPage extends StatefulWidget {
   final Widget banner;
+  final Widget? footer;
   final Color backgroundColor;
   final String background;
 
   const LoginPage({
     required this.banner,
+    this.footer,
     required this.backgroundColor,
     required this.background,
     super.key,
@@ -84,7 +86,9 @@ class _LoginPageState extends State<LoginPage> {
                         widget.banner,
                         const Gap(10),
                         TextFormField(
-                          validator: (email) => EmailValidator.validate(email!) ? null : 'Valid user email required',
+                          validator: (email) => EmailValidator.validate(email!)
+                              ? null
+                              : 'Valid user email required',
                           controller: emailController,
                           textInputAction: TextInputAction.next,
                           decoration: const InputDecoration(
@@ -94,15 +98,25 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         TextFormField(
                           validator: (value) {
-                            if (value!.length < 8) return 'Minimum 8 characters';
+                            if (value!.length < 8) {
+                              return 'Minimum 8 characters';
+                            }
                             RegExp regex = RegExp(r'.*[a-z]');
-                            if (!regex.hasMatch(value)) return 'Lowercase character required';
+                            if (!regex.hasMatch(value)) {
+                              return 'Lowercase character required';
+                            }
                             regex = RegExp(r'.*[A-Z]');
-                            if (!regex.hasMatch(value)) return 'Uppercase character required';
+                            if (!regex.hasMatch(value)) {
+                              return 'Uppercase character required';
+                            }
                             regex = RegExp(r'.*\d');
-                            if (!regex.hasMatch(value)) return 'Number character required';
+                            if (!regex.hasMatch(value)) {
+                              return 'Number character required';
+                            }
                             regex = RegExp(r'.*[@$!%*?&]');
-                            if (!regex.hasMatch(value)) return 'Special character required (@\$!%*?&)';
+                            if (!regex.hasMatch(value)) {
+                              return 'Special character required (@\$!%*?&)';
+                            }
                             return null;
                           },
                           controller: passwordController,
@@ -111,8 +125,11 @@ class _LoginPageState extends State<LoginPage> {
                             labelText: 'Password*',
                             helperText: ' ',
                             suffixIcon: IconButton(
-                              icon: isObscured ? const Icon(Icons.visibility) : const Icon(Icons.visibility_off),
-                              onPressed: () => setState(() => isObscured = !isObscured),
+                              icon: isObscured
+                                  ? const Icon(Icons.visibility)
+                                  : const Icon(Icons.visibility_off),
+                              onPressed: () =>
+                                  setState(() => isObscured = !isObscured),
                             ),
                           ),
                           obscureText: isObscured,
@@ -126,9 +143,12 @@ class _LoginPageState extends State<LoginPage> {
                             if (formKey.currentState!.validate()) {
                               final String? err;
                               if (action == 'login') {
-                                err = await login(emailController.text.trim(), passwordController.text.trim());
+                                err = await login(emailController.text.trim(),
+                                    passwordController.text.trim());
                               } else {
-                                err = await register(emailController.text.trim(), passwordController.text.trim());
+                                err = await register(
+                                    emailController.text.trim(),
+                                    passwordController.text.trim());
                               }
                               setState(() => errorMessage = err);
                             }
@@ -156,19 +176,25 @@ class _LoginPageState extends State<LoginPage> {
                                     onPressed: () => showDialog(
                                       barrierDismissible: false,
                                       context: context,
-                                      builder: (BuildContext context) => ResetPasswordDialog(resetPassword: resetPassword),
+                                      builder: (BuildContext context) =>
+                                          ResetPasswordDialog(
+                                              resetPassword: resetPassword),
                                     ).then(
                                       (reset) {
                                         if (reset) {
                                           showDialog(
                                             barrierDismissible: false,
                                             context: context,
-                                            builder: (BuildContext context) => AlertDialog(
-                                              shape: const RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                                            builder: (BuildContext context) =>
+                                                AlertDialog(
+                                              shape:
+                                                  const RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(5.0)),
                                               ),
                                               backgroundColor: Colors.white,
-                                              surfaceTintColor: Colors.transparent,
+                                              surfaceTintColor:
+                                                  Colors.transparent,
                                               title: const Text(
                                                 'Password reset',
                                                 style: TextStyle(
@@ -178,11 +204,14 @@ class _LoginPageState extends State<LoginPage> {
                                               ),
                                               content: Container(
                                                 color: Colors.white,
-                                                child: const Text('Please check your email for a password reset link'),
+                                                child: const Text(
+                                                    'Please check your email for a password reset link'),
                                               ),
                                               actions: <Widget>[
                                                 TextButton(
-                                                  onPressed: () => Navigator.pop(context, null),
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          context, null),
                                                   child: const Text('OK'),
                                                 ),
                                               ],
@@ -234,6 +263,14 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
+            widget.footer != null
+                ? Positioned(
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    child: widget.footer!,
+                  )
+                : const SizedBox(height: 0),
           ],
         ),
       );
