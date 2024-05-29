@@ -82,7 +82,7 @@ class _VerifyPageState extends State<VerifyPage> {
                             color: Theme.of(context).primaryColor,
                             fontWeight: !hover ? FontWeight.normal : FontWeight.w900,
                           ),
-                          mouseCursor: MaterialStateMouseCursor.clickable,
+                          mouseCursor: WidgetStateMouseCursor.clickable,
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
                               showDialog(
