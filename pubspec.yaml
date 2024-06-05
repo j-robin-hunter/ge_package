@@ -1,6 +1,6 @@
 name: ge_package
 description: "Provides login and background for GE program suite"
-version: 0.0.2
+version: 0.0.3
 
 environment:
   sdk: '>=3.1.5 <4.0.0'
@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  firebase_auth: ^4.14.1
+  firebase_auth: ^5.0.0
   email_validator: ^2.1.17
   gap: ^3.0.1
 
